@@ -12,7 +12,7 @@ set(SFML_DIR "${CMAKE_SOURCE_DIR}/vendor/SFML/lib/cmake/SFML")
 find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
 
 # Adicione os arquivos de origem
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/events.cpp src/player.cpp src/input_system.cpp)
 
 # Incluir os diretórios de cabeçalhos da SFML
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/vendor/SFML/include)

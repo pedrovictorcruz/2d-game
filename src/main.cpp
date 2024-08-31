@@ -1,32 +1,35 @@
-#include "./player.cpp"
+#include "configuration.hpp"
+#include "events.hpp"
+#include "input_system.hpp"
+#include "player.hpp"
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Event.hpp>
 
 int main()
 {
-  sf::ContextSettings settings;
-  // create the window
-  sf::RenderWindow window(sf::VideoMode(800, 600), "Player");
+  auto window = sf::RenderWindow{{config::window_size.x, config::window_size.y},
+                                 "2d-game"};
+
+  window.setFramerateLimit(config::max_framerate);
+
+  InputSystem input;
 
   Player player;
 
-  // run the main loop
   while (window.isOpen())
   {
-    // handle events
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-      if (event.type == sf::Event::Closed)
-        window.close();
-    }
 
-    player.update(event);
+    processEvents(window);
 
-    // draw
     window.clear();
 
+    input.update();
+
+    player.update(input);
+
+    // draw
     window.draw(player);
 
     window.display();
