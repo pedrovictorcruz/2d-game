@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include "configuration.hpp"
 #include <SFML/System/Vector2.hpp>
 
 Player::Player()
@@ -10,20 +11,19 @@ Player::Player()
 
 void Player::update(const InputSystem &input)
 {
-  if (input.isKeyPressed(sf::Keyboard::W))
-  {
-    this->move(0.f, -speed);
-  }
   if (input.isKeyPressed(sf::Keyboard::A))
   {
-    this->move(-speed, 0.f);
-  }
-  if (input.isKeyPressed(sf::Keyboard::S))
-  {
-    this->move(0.f, speed);
+    if ((this->getPosition().x + -speed) < config::window_size.x)
+    {
+      this->move(-speed, 0.f);
+    }
   }
   if (input.isKeyPressed(sf::Keyboard::D))
   {
     this->move(speed, 0.f);
+  }
+  if (input.isKeyPressed(sf::Keyboard::S))
+  {
+    this->move(0.f, speed);
   }
 }
