@@ -2,10 +2,10 @@
 
 InputSystem::InputSystem()
 {
-  keys[sf::Keyboard::Left] = false;
-  keys[sf::Keyboard::Right] = false;
-  keys[sf::Keyboard::Up] = false;
-  keys[sf::Keyboard::Down] = false;
+  keys[sf::Keyboard::A] = false;
+  keys[sf::Keyboard::D] = false;
+  keys[sf::Keyboard::W] = false;
+  keys[sf::Keyboard::S] = false;
 }
 
 void InputSystem::update()
