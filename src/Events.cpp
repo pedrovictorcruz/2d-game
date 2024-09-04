@@ -1,11 +1,13 @@
-#include "Events.hpp"
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/View.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
-void processEvents(sf::Window &window)
+void processEvents(sf::RenderWindow &window)
 {
   sf::Event event;
+  sf::View view = window.getDefaultView();
 
   while (window.pollEvent(event))
   {
@@ -19,6 +21,12 @@ void processEvents(sf::Window &window)
       {
         window.close();
       }
+    }
+    else if (event.type == sf::Event::Resized)
+    {
+      // update the view to the new size of te window
+      sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+      window.setView(sf::View(visibleArea));
     }
   }
 }

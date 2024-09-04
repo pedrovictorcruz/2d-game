@@ -1,5 +1,5 @@
 #pragma once
 
-#include <SFML/Window/Window.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
-void processEvents(sf::Window &window);
+void processEvents(sf::RenderWindow &window);

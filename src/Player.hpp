@@ -15,6 +15,8 @@ public:
 private:
   void movePlayer(float deltaX, float deltaY);
 
+  void fire();
+
 private:
- float speed = 5.0f;
+ float speed = 7.0f;
 };

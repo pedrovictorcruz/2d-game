@@ -1,6 +1,8 @@
 #include "Player.hpp"
 #include "Configuration.hpp"
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 Player::Player()
 {
@@ -11,6 +13,11 @@ Player::Player()
 
 void Player::update(const InputSystem &input)
 {
+  if (input.isKeyPressed(sf::Keyboard::Space))
+  {
+    this->fire();
+  }
+
   if (input.isKeyPressed(sf::Keyboard::W))
   {
     this->movePlayer(0.f, -speed);
@@ -29,15 +36,17 @@ void Player::update(const InputSystem &input)
   }
 }
 
+void Player::fire() {}
+
 void Player::movePlayer(float deltaX, float deltaY)
 {
   sf::Vector2f newPosition = this->getPosition() + sf::Vector2f(deltaX, deltaY);
 
   // Window size collision
-  if (newPosition.x - this->getRadius() > 0 &&
-      newPosition.x + this->getRadius() < config::window_size.x &&
-      newPosition.y - this->getRadius() > 0 &&
-      newPosition.y + this->getRadius() < config::window_size.y)
+  if (newPosition.x > 0 &&
+      newPosition.x + this->getRadius() * 2 < config::window_size.x &&
+      newPosition.y > 0 &&
+      newPosition.y + this->getRadius() * 2 < config::window_size.y)
   {
     this->move(deltaX, deltaY);
   }

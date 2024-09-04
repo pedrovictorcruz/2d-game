@@ -2,10 +2,9 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <cstdint>
-namespace config
-{
+namespace config {
 
-sf::Vector2u const window_size = {800, 600};
+sf::Vector2u const window_size = {1920, 1080};
 
 sf::Vector2f const window_size_f = static_cast<sf::Vector2f>(window_size);
 
